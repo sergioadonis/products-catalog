@@ -9,9 +9,10 @@
   },
   "scripts": {
     "start": "node src/index",
-    "test": "mocha -w --recursive --exit",
+    "test": "mocha --recursive --exit",
     "prettier-watch": "onchange '**/*.js' -- prettier --write {{changed}}",
-    "mysql": "docker-compose down && docker-compose up -d && docker-compose logs -f"
+    "mysql": "docker-compose down && docker-compose up -d",
+    "knex": "node node_modules/knex/bin/cli.js"
   },
   "repository": {
     "type": "git",

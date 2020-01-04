@@ -1,11 +1,13 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-expressions */
-require('dotenv').config();
 const { before, after } = require('mocha');
 const { describe, it } = require('mocha');
 const { expect } = require('chai');
-const createSchema = require('../src/createSchema');
-const knex = require('../src/config/knex');
+const Knex = require('knex');
+const env = process.env.NODE_ENV || 'development';
+const connection = require('../knexfile')[env];
+
+const knex = Knex(connection);
 
 const {
   CATEGORIES,
@@ -14,12 +16,10 @@ const {
   DESCRIPTION,
   PHOTO_URL,
   // PERSONS,
-} = require('../src/contants');
+} = require('../src/constants');
 
-before(async () => {
-  console.log('Creating schema before testing... ');
-  await createSchema(knex);
-  console.log('Creating schema before testing... OK');
+before(() => {
+  console.log('Starting schema test...');
 });
 
 describe('Schema', () => {
