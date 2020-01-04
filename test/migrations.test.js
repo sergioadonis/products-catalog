@@ -3,11 +3,6 @@
 const { before, after } = require('mocha');
 const { describe, it } = require('mocha');
 const { expect } = require('chai');
-const Knex = require('knex');
-const env = process.env.NODE_ENV || 'development';
-const connection = require('../knexfile')[env];
-
-const knex = Knex(connection);
 
 const {
   CATEGORIES,
@@ -17,6 +12,7 @@ const {
   PHOTO_URL,
   // PERSONS,
 } = require('../src/constants');
+const knex = require('../src/connection');
 
 before(() => {
   console.log('Starting schema test...');
