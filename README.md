@@ -1,5 +1,5 @@
-# restaurant-orders-db
-Project to define restaurant orders schemes database and models for data access 
+# Products Catalog backend service
+Project to define products and business schemes database and models for data access 
 
 ## Requirements
 Requirement list:
