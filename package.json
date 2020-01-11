@@ -12,7 +12,8 @@
     "test": "mocha --recursive --exit",
     "prettier-watch": "onchange '**/*.js' -- prettier --write {{changed}}",
     "mysql": "docker-compose down && docker-compose up -d",
-    "knex": "node node_modules/knex/bin/cli.js"
+    "knex": "node node_modules/knex/bin/cli.js",
+    "migrate": "npm run knex -- migrate:latest"
   },
   "repository": {
     "type": "git",

@@ -20,25 +20,25 @@ before(() => {
 
 describe('Schema', () => {
   describe('categories table schema', () => {
-    it('categories', async () => {
+    it('categories table exists', async () => {
       const exists = await knex.schema.hasTable(CATEGORIES);
       expect(exists).to.be.true;
     });
-    it('categories.id', async () => {
+    it('id column exists in categories table', async () => {
       const hasColumn = await knex.schema.hasColumn(CATEGORIES, ID);
-      return expect(hasColumn).to.be.true;
+      expect(hasColumn).to.be.true;
     });
-    it('categories.name', async () => {
+    it('name column exists in categories table', async () => {
       const hasColumn = await knex.schema.hasColumn(CATEGORIES, NAME);
-      return expect(hasColumn).to.be.true;
+      expect(hasColumn).to.be.true;
     });
-    it('categories.description', async () => {
+    it('description column exists in categories table', async () => {
       const hasColumn = await knex.schema.hasColumn(CATEGORIES, DESCRIPTION);
-      return expect(hasColumn).to.be.true;
+      expect(hasColumn).to.be.true;
     });
-    it('categories.photoUrl', async () => {
+    it('photoUrl column exists in categories table', async () => {
       const hasColumn = await knex.schema.hasColumn(CATEGORIES, PHOTO_URL);
-      return expect(hasColumn).to.be.true;
+      expect(hasColumn).to.be.true;
     });
   });
 });
