@@ -1,20 +1,14 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-expressions */
-const { describe, it, before, after } = require('mocha');
+const { describe, it } = require('mocha');
 const { expect } = require('chai');
 
 const knex = require('../src/connection');
 const { CategoryRepository } = require('../src/repositories');
-const { CATEGORIES } = require('../src/constants');
 
 const repository = new CategoryRepository(knex);
 let categoryId = null;
-
-const truncate = () => knex.table(CATEGORIES).truncate();
-
-before(async () => truncate());
-after(async () => truncate());
 
 describe('Category model repository', () => {
   it('create a category', async () => {
@@ -53,15 +47,20 @@ describe('Category model repository', () => {
       });
   });
 
-  it('delete a category', async () => {
-    const numDeleted = await repository.delete(categoryId);
-    expect(numDeleted).to.be.equals(1);
-  });
-
   it('list categories', async () => {
     const categoryList = await repository.findAll();
     expect(categoryList)
       .to.be.a('array')
-      .and.to.have.lengthOf(0);
+      .and.deep.includes({
+        id: categoryId,
+        name: 'Name for testing',
+        photoUrl: 'http://photo.category.content/random-url-for-testing',
+        description: 'The photo URL has been updated.',
+      });
+  });
+
+  it('delete a category', async () => {
+    const numDeleted = await repository.delete(categoryId);
+    expect(numDeleted).to.be.equals(1);
   });
 });
